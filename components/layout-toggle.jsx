@@ -10,29 +10,27 @@ import {
 
 export default function LayoutToggle({ showDetails, onToggle }) {
   return (
-    <div className="fixed top-20 right-4 z-50 lg:hidden">
-      <Tooltip delayDuration={0}>
-        <TooltipTrigger asChild>
-          <Button
-            variant="secondary"
-            size="icon"
-            className="h-8 w-8 bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg ring-2 ring-background"
-            onClick={onToggle}
-          >
-            {showDetails ? (
-              <LayoutGrid className="h-4 w-4" />
-            ) : (
-              <LayoutList className="h-4 w-4" />
-            )}
-            <span className="sr-only text-sm">
-              {showDetails ? 'Hide details' : 'Show details'}
-            </span>
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent side="left" className="bg-background/95 backdrop-blur-sm text-sm">
-          <p>{showDetails ? 'Hide details' : 'Show details'}</p>
-        </TooltipContent>
-      </Tooltip>
-    </div>
+    <Tooltip delayDuration={0}>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-8 w-8 hover:bg-primary/10"
+          onClick={onToggle}
+        >
+          {showDetails ? (
+            <LayoutGrid className="h-4 w-4 text-primary" />
+          ) : (
+            <LayoutList className="h-4 w-4 text-primary" />
+          )}
+          <span className="sr-only text-sm">
+            {showDetails ? 'Hide details' : 'Show details'}
+          </span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="bg-background/95 backdrop-blur-sm">
+        <p>{showDetails ? 'Hide details' : 'Show details'}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
