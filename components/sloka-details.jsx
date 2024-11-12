@@ -3,11 +3,11 @@
 export default function SlokaDetails({ sloka, language, isMobile = false }) {
   const containerClass = isMobile 
     ? "space-y-4 animate-in slide-in-from-top duration-300"
-    : "space-y-6";
+    : "space-y-6 h-full flex flex-col";
 
   const sectionClass = isMobile
-    ? "space-y-2 bg-white/30 dark:bg-white/20 p-4 rounded-lg backdrop-blur-md"
-    : "space-y-4 bg-white/30 dark:bg-white/20 p-6 rounded-lg backdrop-blur-md shadow-inner";
+    ? "space-y-2 bg-white/30 dark:bg-white/5 p-4 rounded-lg backdrop-blur-md"
+    : "space-y-4 bg-white/30 dark:bg-white/5 p-6 rounded-lg backdrop-blur-md shadow-inner flex-1";
 
   const headingClass = isMobile
     ? "text-base font-semibold text-primary"
