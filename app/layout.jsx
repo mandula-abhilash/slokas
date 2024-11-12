@@ -7,7 +7,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Slokas for Children',
+  title: 'Shlokas for Children',
   description: 'Learn timeless Sanskrit verses through interactive learning',
 };
 

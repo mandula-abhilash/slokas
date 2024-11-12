@@ -9,8 +9,7 @@ export function LanguageProvider({ children }) {
 
   const languages = [
     { value: 'english', label: 'English' },
-    { value: 'sanskrit', label: 'संस्कृत' },
-    { value: 'hindi', label: 'हिंदी' }
+    { value: 'telugu', label: 'తెలుగు' },
   ];
 
   const value = {

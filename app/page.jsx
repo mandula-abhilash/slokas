@@ -45,10 +45,9 @@ export default function Home() {
       
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="flex-shrink-0 text-center py-4">
-          <div className="inline-flex items-center justify-center gap-3 mb-2 transition duration-300 hover:text-primary/70">
-            <BookOpen className="w-6 h-6 text-primary" />
+          <div className="inline-flex items-center justify-center gap-3 mt-3 transition duration-300 hover:text-primary/70">
             <h1 className="text-3xl font-bold tracking-tight text-primary">
-              Slokas for Kids
+              Shlokas for Kids
             </h1>
           </div>
         </header>
@@ -90,7 +89,7 @@ export default function Home() {
                 ) : (
                   <div className="text-center py-8">
                     <p className="text-sm text-muted-foreground">
-                      No slokas found. Try a different search term.
+                      No shlokas found. Try a different search term.
                     </p>
                   </div>
                 )}
@@ -117,7 +116,7 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="flex-1 p-4 lg:p-6 overflow-y-auto">
+                <div className="flex-1 p-4 lg:p-4 overflow-y-auto">
                   <SlokaCard 
                     sloka={filteredSlokas[selectedSlokaIndex]} 
                     language={language}
@@ -140,7 +139,7 @@ export default function Home() {
               </>
             ) : (
               <div className="h-full flex items-center justify-center text-muted-foreground p-4 text-center">
-                <p>No slokas found. Try a different search term.</p>
+                <p>No shlokas found. Try a different search term.</p>
               </div>
             )}
           </div>

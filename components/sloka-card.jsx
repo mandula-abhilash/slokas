@@ -30,7 +30,7 @@ export default function SlokaCard({ sloka, language, isPreview = false, variant 
             <div 
               className="absolute inset-0 pointer-events-none bg-repeat opacity-5"                    
               style={{
-                backgroundImage: 'url("/pattern.jpg")',
+                backgroundImage: 'url("/assets/pattern.jpg")',
                 backgroundSize: '64px 64px'
               }}
             />
@@ -49,17 +49,17 @@ export default function SlokaCard({ sloka, language, isPreview = false, variant 
                   </div>
                 </div>
 
-                <div className="relative bg-white/30 dark:bg-white/5 p-6 rounded-lg backdrop-blur-md shadow-inner flex-1">
-                  <p className="text-lg font-medium leading-relaxed whitespace-pre-line">
+                <div className="relative bg-white/30 dark:bg-white/5 px-2 py-6 rounded-lg backdrop-blur-md shadow-inner flex-1">
+                  <p className="text-md font-medium leading-relaxed whitespace-pre-line">
                     {sloka.text[language]}
                   </p>
                 </div>
 
                 {sloka.deityImage && (
                   <div className="flex justify-center mt-8">
-                    <div className="relative w-48 h-48 rounded-full overflow-hidden ring-4 ring-primary/10 shadow-xl">
+                    <div className="relative w-48 h-48 rounded-full">
                       <Image
-                        src={`https://planning-applications-bucket.s3.eu-west-2.amazonaws.com/612dc8120ab9cb0abc81b689.jpeg?etag=ef104f05a0e865f18af7cc651a73d93f`}
+                        src={sloka.deityImage}
                         alt={`${sloka.title[language]} Deity`}
                         fill
                         className="object-cover dark:brightness-90 dark:contrast-125"
@@ -87,7 +87,7 @@ export default function SlokaCard({ sloka, language, isPreview = false, variant 
             <div 
               className="absolute inset-0 pointer-events-none bg-repeat opacity-5"                    
               style={{
-                backgroundImage: 'url("/pattern.jpg")',
+                backgroundImage: 'url("/assets/pattern.jpg")',
                 backgroundSize: '64px 64px'
               }}
             />

@@ -12,7 +12,7 @@ export default function SearchBar({ query, setQuery, className = '' }) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search slokas by title or content..."
+          placeholder="Search shlokas by title or content..."
           className="w-full pl-10 pr-4 py-2 bg-background/50 backdrop-blur-sm border-primary/20 focus:border-primary"
         />
       </div>
