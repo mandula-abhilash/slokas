@@ -26,7 +26,7 @@ export default function SlokaCard({ sloka, language, isPreview = false, variant 
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 max-w-7xl mx-auto">
         <div className="lg:contents">
-          <Card className="relative overflow-hidden transition-all duration-300 p-6 lg:p-8 h-full">
+          <Card className="relative overflow-hidden transition-all duration-300 p-6 lg:p-8 h-full lg:min-h-[70vh]">
             <div 
               className="absolute inset-0 pointer-events-none bg-repeat opacity-5"                    
               style={{
@@ -35,7 +35,7 @@ export default function SlokaCard({ sloka, language, isPreview = false, variant 
               }}
             />
 
-            <div className="relative h-full flex flex-col">
+            <div className="relative h-full flex flex-col justify-between">
               <div className="space-y-4 text-center flex-1">
                 <div className="relative">
                   <h3 className="text-2xl font-bold text-primary">
@@ -54,20 +54,21 @@ export default function SlokaCard({ sloka, language, isPreview = false, variant 
                     {sloka.text[language]}
                   </p>
                 </div>
-
-                {sloka.deityImage && (
-                  <div className="flex justify-center mt-8">
-                    <div className="relative w-48 h-48 rounded-full">
-                      <Image
-                        src={sloka.deityImage}
-                        alt={`${sloka.title[language]} Deity`}
-                        fill
-                        className="object-cover dark:brightness-90 dark:contrast-125"
-                      />
-                    </div>
-                  </div>
-                )}
               </div>
+
+              {/* Image aligned at the bottom */}
+              {sloka.deityImage && (
+                <div className="flex justify-center mt-8">
+                  <div className="relative w-48 h-48 rounded-full">
+                    <Image
+                      src={sloka.deityImage}
+                      alt={`${sloka.title[language]} Deity`}
+                      fill
+                      className="object-cover dark:brightness-90 dark:contrast-125"
+                    />
+                  </div>
+                </div>
+              )}
 
               {/* Mobile Details */}
               {showMobileDetails && (
@@ -83,7 +84,7 @@ export default function SlokaCard({ sloka, language, isPreview = false, variant 
           </Card>
 
           {/* Desktop Details */}
-          <Card className="relative overflow-hidden transition-all duration-300 p-6 lg:p-8 hidden lg:block lg:sticky lg:top-24 h-full">
+          <Card className="relative overflow-hidden transition-all duration-300 p-6 lg:p-8 hidden lg:block lg:sticky lg:top-24 h-full lg:min-h-[70vh]">
             <div 
               className="absolute inset-0 pointer-events-none bg-repeat opacity-5"                    
               style={{

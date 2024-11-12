@@ -10,8 +10,8 @@ export default function SlokaDetails({ sloka, language, isMobile = false }) {
     : "space-y-4 bg-white/30 dark:bg-white/5 p-6 rounded-lg backdrop-blur-md shadow-inner flex-1";
 
   const headingClass = isMobile
-    ? "text-base font-semibold text-primary"
-    : "text-xl font-semibold text-primary border-b border-primary/10 pb-2";
+    ? "text-md tracking-wide font-semibold text-primary"
+    : "text-md tracking-wide font-semibold text-primary border-b border-primary/10 pb-2";
 
   const textClass = isMobile
     ? "text-sm text-muted-foreground leading-relaxed"
