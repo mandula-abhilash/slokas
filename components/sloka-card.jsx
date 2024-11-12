@@ -1,9 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
+import LayoutToggle from './layout-toggle';
+import SlokaDetails from './sloka-details';
 
 export default function SlokaCard({ sloka, language, isPreview = false, variant = 'default' }) {
+  const [showMobileDetails, setShowMobileDetails] = useState(false);
+
   if (variant === 'compact') {
     return (
       <Card className="relative overflow-hidden transition-all duration-300 hover:bg-muted/50 p-3 hover:shadow-sm">
@@ -19,93 +24,81 @@ export default function SlokaCard({ sloka, language, isPreview = false, variant 
 
   if (variant === 'full') {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
-        <Card className="relative overflow-hidden transition-all duration-300 p-6 lg:p-8">
-          <div 
-            className="absolute inset-0 pointer-events-none bg-repeat bg-[length:50px_50px] bg-center opacity-5"                    
-            style={{
-              backgroundImage: 'url("/pattern.jpg")',
-            }}
-          />
+      <>
+        <LayoutToggle 
+          showDetails={showMobileDetails}
+          onToggle={() => setShowMobileDetails(!showMobileDetails)}
+        />
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 max-w-7xl mx-auto">
+          <Card className="relative overflow-hidden transition-all duration-300 p-6 lg:p-8 h-fit">
+            <div 
+              className="absolute inset-0 pointer-events-none bg-repeat opacity-5"                    
+              style={{
+                backgroundImage: 'url("/pattern.jpg")',
+                backgroundSize: '64px 64px'
+              }}
+            />
 
-          <div className="relative space-y-6 lg:space-y-8">
-            <div className="space-y-4 lg:space-y-6 text-center">
-              <h3 className="text-xl lg:text-2xl font-bold text-primary">
-                {sloka.title[language]}
-              </h3>
+            <div className="relative space-y-6">
+              <div className="space-y-4 text-center">
+                <h3 className="text-2xl font-bold text-primary">
+                  {sloka.title[language]}
+                </h3>
 
-              <div className="relative bg-white/30 dark:bg-white/20 p-4 lg:p-6 rounded-lg backdrop-blur-md">
-                <p className="text-base lg:text-lg font-medium leading-relaxed whitespace-pre-line">
-                  {sloka.text[language]}
-                </p>
-              </div>
+                <div className="relative bg-white/30 dark:bg-white/20 p-6 rounded-lg backdrop-blur-md shadow-inner">
+                  <p className="text-lg font-medium leading-relaxed whitespace-pre-line">
+                    {sloka.text[language]}
+                  </p>
+                </div>
 
-              {sloka.deityImage && (
-                <div className="flex justify-center">
-                  <div className="relative w-32 h-32 lg:w-48 lg:h-48">
-                    <Image
-                      // TODO: Remove the hardcoded value after setting up backend
-                      src={`https://planning-applications-bucket.s3.eu-west-2.amazonaws.com/612dc8120ab9cb0abc81b689.jpeg?etag=ef104f05a0e865f18af7cc651a73d93f`}
-                      alt={`${sloka.title[language]} Deity`}
-                      fill
-                      className="object-contain dark:brightness-90 dark:contrast-125"
-                    />
+                {sloka.deityImage && (
+                  <div className="flex justify-center mt-8">
+                    <div className="relative w-48 h-48 rounded-full overflow-hidden ring-4 ring-primary/10 shadow-xl">
+                      <Image
+                        src={`https://planning-applications-bucket.s3.eu-west-2.amazonaws.com/612dc8120ab9cb0abc81b689.jpeg?etag=ef104f05a0e865f18af7cc651a73d93f`}
+                        alt={`${sloka.title[language]} Deity`}
+                        fill
+                        className="object-cover dark:brightness-90 dark:contrast-125"
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-
-            {/* Meaning and Context for mobile */}
-            <div className="space-y-4 lg:hidden">
-              <div className="space-y-2 bg-white/30 dark:bg-white/20 p-4 lg:p-6 rounded-lg backdrop-blur-md">
-                <h4 className="text-base font-semibold text-primary">Meaning</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {sloka.meaning[language]}
-                </p>
+                )}
               </div>
 
-              {sloka.context && (
-                <div className="space-y-2 bg-white/30 dark:bg-white/20 p-4 lg:p-6 rounded-lg backdrop-blur-md">
-                  <h4 className="text-base font-semibold text-primary">When to Recite</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {sloka.context[language]}
-                  </p>
+              {/* Mobile Details */}
+              {showMobileDetails && (
+                <div className="lg:hidden">
+                  <SlokaDetails 
+                    sloka={sloka} 
+                    language={language}
+                    isMobile={true}
+                  />
                 </div>
               )}
             </div>
-          </div>
-        </Card>
+          </Card>
 
-        {/* Meaning and Context for desktop */}
-        <Card className="relative overflow-hidden transition-all duration-300 p-6 lg:p-8 hidden lg:block">
-          <div 
-            className="absolute inset-0 pointer-events-none bg-repeat bg-[length:50px_50px] bg-center opacity-5"                    
-            style={{
-              backgroundImage: 'url("/pattern.jpg")',
-            }}
-          />
+          {/* Desktop Details */}
+          <Card className="relative overflow-hidden transition-all duration-300 p-6 lg:p-8 hidden lg:block lg:sticky lg:top-24 h-fit">
+            <div 
+              className="absolute inset-0 pointer-events-none bg-repeat opacity-5"                    
+              style={{
+                backgroundImage: 'url("/pattern.jpg")',
+                backgroundSize: '64px 64px'
+              }}
+            />
 
-          <div className="relative space-y-6">
-            <div className="space-y-4">
-              <div className="space-y-2 bg-white/30 dark:bg-white/20 p-4 lg:p-6 rounded-lg backdrop-blur-md">
-                <h4 className="text-base lg:text-lg font-semibold text-primary">Meaning</h4>
-                <p className="text-sm lg:text-base text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {sloka.meaning[language]}
-                </p>
-              </div>
-
-              {sloka.context && (
-                <div className="space-y-2 bg-white/30 dark:bg-white/20 p-4 lg:p-6 rounded-lg backdrop-blur-md">
-                  <h4 className="text-base lg:text-lg font-semibold text-primary">When to Recite</h4>
-                  <p className="text-sm lg:text-base text-muted-foreground">
-                    {sloka.context[language]}
-                  </p>
-                </div>
-              )}
+            <div className="relative space-y-8">
+              <SlokaDetails 
+                sloka={sloka} 
+                language={language}
+                isMobile={false}
+              />
             </div>
-          </div>
-        </Card>
-      </div>
+          </Card>
+        </div>
+      </>
     );
   }
 
